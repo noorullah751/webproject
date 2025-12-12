@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+{% block start %}
+
+<!-- ✅ Hero Section -->
+<section class="bg-dark text-white text-center py-5 mb-5 hero-section">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-3">Welcome to <span class="text-info">PMS</span></h1>
+    <p class="lead mb-4">Find your dream property, explore insightful blogs, and stay ahead of real estate trends.</p>
+    <a href="{% url 'contact' %}" class="btn btn-light btn-lg rounded-pill shadow-sm hero-btn">
+      contact us
+    </a>
+  </div>
+</section>
+
+<!-- ✅ Blog Section -->
+<section class="container mb-5">
+  <h2 class="text-center mb-5 fw-bold text-primary">📰 Latest Blog Posts</h2>
+
+  <div class="row justify-content-center">
+    <!-- Blog Card 1 -->
+    <div class="col-md-4 mb-4">
+      <div class="card blog-card shadow-lg border-0 h-100">
+        <img src="{% static 'images/Luxury_Apartments.jpg' %}"
+             class="card-img-top blog-img"
+             alt="Luxury Apartment">
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-dark">Top 5 Luxury Apartments in 2025</h5>
+          <p class="card-text text-muted">Discover elegant apartments designed for modern living with unmatched comfort.</p>
+          <a href="{% url 'about' %}" class="btn btn-outline-primary rounded-pill px-3">About Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Card 2 -->
+    <div class="col-md-4 mb-4">
+      <div class="card blog-card shadow-lg border-0 h-100">
+        <img src="{% static 'images/Tips_for_First_Time_home.png' %}"
+             class="card-img-top blog-img"
+             alt="Home Buying Tips">
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-dark">Smart Tips for First-Time Home Buyers</h5>
+          <p class="card-text text-muted">Learn how to find great deals, negotiate smartly, and invest confidently.</p>
+          <a href="{% url 'home' %}" class="btn btn-outline-primary rounded-pill px-3">About Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Card 3 -->
+    <div class="col-md-4 mb-4">
+      <div class="card blog-card shadow-lg border-0 h-100">
+        <img src="{% static 'images/TRENDS_2025.png' %}"
+             class="card-img-top blog-img"
+             alt="Real Estate Trends">
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-dark">Real Estate Trends to Watch in 2025</h5>
+          <p class="card-text text-muted">Stay updated with market insights, price forecasts, and investment tips.</p>
+          <a href="{% url 'home' %}" class="btn btn-outline-primary rounded-pill px-3">About Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⭐ Rate Us Section -->
+<section class="container my-5">
+    <h2 class="text-center fw-bold text-primary mb-4">⭐ Rate Us</h2>
+
+    <div class="card shadow-lg border-0 p-4">
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Five Star Rating -->
+            <div class="text-center mb-3">
+                <label class="form-label fw-bold">Your Rating:</label>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5">
+                    <label for="star5" class="star">★</label>
+
+                    <input type="radio" id="star4" name="rating" value="4">
+                    <label for="star4" class="star">★</label>
+
+                    <input type="radio" id="star3" name="rating" value="3">
+                    <label for="star3" class="star">★</label>
+
+                    <input type="radio" id="star2" name="rating" value="2">
+                    <label for="star2" class="star">★</label>
+
+                    <input type="radio" id="star1" name="rating" value="1">
+                    <label for="star1" class="star">★</label>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Your Feedback:</label>
+                <textarea name="description" class="form-control" rows="4" placeholder="Write your feedback here..." required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
+                    Submit Rating
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- ⭐ Star Rating CSS -->
+<style>
+    .star-rating {
+        direction: rtl;
+        display: inline-flex;
+        gap: 5px;
+        cursor: pointer;
+    }
+    .star-rating input {
+        display: none;
+    }
+    .star-rating label {
+        font-size: 2rem;
+        color: #d3d3d3;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+    .star-rating input:checked ~ label {
+        color: gold;
+    }
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+        color: gold;
+    }
+</style>
+
+{% endblock %}
